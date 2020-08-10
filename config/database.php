@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+$CLEARDB_DATABASE_URL=parse_url('CLEARDB_DATABASE_URL');
+
 return [
 
     /*
@@ -46,11 +48,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('CLEARDB_DATABASE_URL'),
-            'host' => env('DB_HOST', 'us-cdbr-east-02.cleardb.com'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'heroku_2e997f1c894cfbc'),
-            'username' => env('DB_USERNAME', 'bb0da2cb60ffdc'),
-            'password' => env('DB_PASSWORD', '33321d61'),
+            'host' => $CLEARDB_DATABASE_URL["host"],
+            'port' => $CLEARDB_DATABASE_URL["port"],
+            'database' => ltrim($CLEARDB_DATABASE_URL['path'], "/"),
+            'username' => $CLEARDB_DATABASE_URL["user"],
+            'password' => $CLEARDB_DATABASE_URL["pass"],
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
