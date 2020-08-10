@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+$CLEARDB_DATABASE_URL=parse_url(‘CLEARDB_DATABASE_URL’);
 
 return [
 
