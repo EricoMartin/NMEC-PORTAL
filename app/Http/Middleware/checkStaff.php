@@ -15,6 +15,10 @@ class checkStaff
      */
     public function handle($request, Closure $next)
     {
+        $userRoles = Auth::user()->roles()->pluck('name');
+        if(!$userRoles->contains('staff')){
+            return redirect('/');
+        }
         return $next($request);
     }
 }

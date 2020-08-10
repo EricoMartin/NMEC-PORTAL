@@ -27,7 +27,7 @@ class AddRoleIdToStaff extends Migration
     public function down()
     {
         Schema::table('staff', function (Blueprint $table) {
-            $table->dropColumn('staff');
+            $table->dropColumn('role_id');
         });
     }
 }
