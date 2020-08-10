@@ -1,6 +1,0 @@
-<Limit GET POST PUT OPTIONS>
-    Require all granted
-</Limit>
-<LimitExcept GET POST PUT OPTIONS>
-    Require all denied
-</LimitExcept>
