@@ -73,9 +73,7 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                       
                     @endauth
                 </div>
             @endif
@@ -87,12 +85,10 @@
                 <p>Remember to update your data by clicking on update data in your dashboard</p>
                 @if (Route::has('login'))
                     @auth
-                        <a class="btn btn-success btn-lg" href="{{ url('/home') }}">Home</a>
+                        <a class="btn btn-primary btn-lg" href="{{ url('/home') }}">Home</a>
                     @else
-                <a class="btn btn-success btn-lg" href="/login" role="button">Login</a>
-                @if (Route::has('register'))
-                <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
-                @endif
+                <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+                
                     @endauth
             @endif
             </div>

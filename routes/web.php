@@ -46,6 +46,7 @@ Route::get('/inbox', 'MessageController@index')->middleware('auth');
 Route::get('/{id}/inbox', 'MessageController@getMessages')->middleware('auth')->middleware('nocache');
 Route::get('/{id}/message', 'MessageController@getAmessage')->middleware('auth');
 Route::post('/send', 'MessageController@sendMessage')->middleware('auth');
+Route::post('/send/message', 'MessageController@sendAdminMessage')->middleware('auth');
 Route::get('/reply/{id}/index', 'ReplyController@index')->middleware('auth');
 Route::post('/reply/{id}/store','ReplyController@store')->name('reply.add')->middleware('auth');
 Route::get('/edit/{id}/message','MessageController@editMessage')->name('edit.msg')->middleware('auth');

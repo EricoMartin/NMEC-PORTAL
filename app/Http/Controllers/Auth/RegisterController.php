@@ -49,6 +49,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $email = '@nmec.gov.ng';
+        $data['email'] .= $email;
         $data['password'] = '1234@nmec';
         $data['password_confirmation'] = '1234@nmec';
         //dd($data);
@@ -57,6 +59,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'status' => ['required', 'string'],
+            'file_id' => ['required', 'integer'],
         ]);
     }
 
@@ -70,9 +73,10 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'email' => $data['email'].'@nmec.gov.ng',
             'password' => Hash::make($data['password']),
             'status' => $data['status'],
+            'file_id' => $data['file_id'],
             //'password' => $data['password'],
         ]);
     }

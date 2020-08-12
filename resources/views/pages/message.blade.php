@@ -24,6 +24,7 @@
 
                 <div class="card-body">
                 <div><h3>Create Message</h3></div>
+                
                     {{ Form::open(['action' => 'MessageController@sendMessage', 'id'=> Auth::user()->id, 'method' => 'POST', 'enctype' => 'multipart/form-data']) }}
                     <div class="form-group">
                         {{Form::label('file_number', 'To')}}

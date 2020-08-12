@@ -50,6 +50,16 @@
                 <div class="col">
                      <!-- E-mail -->
                     <div class="md-form">
+                        {{Form::text('middlename', '', ['class' => 'form-control','placeholder'=>'Middle Name'])}}
+                        {{Form::label('middlename', 'Middlename')}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                     <!-- E-mail -->
+                    <div class="md-form">
                         {{Form::email('email', '', ['class' => 'form-control','placeholder'=>'example@email.com'])}}
                         {{Form::label('email', 'E-Mail')}}
                     </div>
@@ -161,8 +171,8 @@
                 <div class="col">
                     <!-- Committees -->
                     <div class="md-form">
-                        {{Form::text('committees', '', ['class' => 'form-control' ,'placeholder'=>'Committees'])}}
-                        {{Form::label('committees', 'Committees')}}
+                        {{Form::text('unit', '', ['class' => 'form-control' ,'placeholder'=>'Unit'])}}
+                        {{Form::label('unit', 'Unit')}}
                     </div>
                 </div>
             </div>

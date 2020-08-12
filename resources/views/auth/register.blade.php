@@ -12,10 +12,10 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name"  type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -24,20 +24,34 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row">
+                        <div class="form-group form-row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}{{'@'.'nmec.com'}}" required autocomplete="email">
-
+                                
+                            <div class="form-group col col-md-6">
+                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="lastname.firstname" value="{{ old('email') }}" required autocomplete="email">
+                                
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                            <div class="form-group col"> @nmec.gov.ng</div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="file_id" class="col-md-4 col-form-label text-md-right">{{ __('File Number') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="file_id" type="number" class="form-control @error('status') is-invalid @enderror"  name="file_id" required autocomplete="file_id">
+    
+                                    @error('status')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <input id="status" type="hidden" class="form-control @error('status') is-invalid @enderror" value="DEFAULT" name="status" required autocomplete="default">

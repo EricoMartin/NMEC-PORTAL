@@ -9,7 +9,7 @@
 <!-- Material form register -->
 <div class="container">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Staff Data Registration</strong>
+        <strong>Staff Data</strong>
     </h5>
 
     <!--Card content-->
@@ -33,11 +33,21 @@
                 <div class="col">
                     <!-- Last name -->
                     <div class="md-form">
-                        {{Form::text('lastname', '', ['class' => 'form-control','placeholder'=>'Last Name'])}}
-                        {{Form::label('lastname', 'Last Name')}}
+                        {{Form::text('middlename', '', ['class' => 'form-control','placeholder'=>'Middle Name'])}}
+                        {{Form::label('middlename', 'Middlename')}}
                     </div>
                 </div>
+                <!-- Last name -->
             </div>
+
+        <div class='form-row'> 
+            <div class="col md-form">
+                        {{Form::text('lastname', '', ['class' => 'form-control','placeholder'=>'Last Name'])}}
+                        {{Form::label('lastname', 'Last Name')}}
+            
+            </div>
+        </div>
+
 
             <div class="form-row">
                 <div class="col">
@@ -152,16 +162,16 @@
                     </div>
                 </div>
                 <div class="col">
-                    <!-- Committees -->
+                    <!-- Unit -->
                     <div class="md-form">
-                        {{Form::text('committees', '', ['class' => 'form-control' ,'placeholder'=>'Committees'])}}
-                        {{Form::label('committees', 'Committees')}}
+                        {{Form::text('unit', '', ['class' => 'form-control' ,'placeholder'=>'Unit'])}}
+                        {{Form::label('unit', 'Unit')}}
                     </div>
                 </div>
             </div>
 
             <!-- Sign up button -->
-            {{Form::submit('Submit Data', ['class' => 'btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0'])}}
+            {{Form::submit('Submit Data', ['class' => 'btn btn-primary btn-rounded '])}}
             <hr>
 
             <!-- Terms of service -->

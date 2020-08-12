@@ -64,6 +64,10 @@
                         <td>{{App\Staff::find(Auth::user()->id)->firstname}}</td>
                         </tr>
                         <tr>
+                            <th scope="row">Middle Name:</th>
+                            <td>{{App\Staff::find(Auth::user()->id)->middlename}}</td>
+                            </tr>
+                        <tr>
                         <th scope="row">LastName:</th>
                         <td>{{App\Staff::find(Auth::user()->id)->lastname}}</td>
                         </tr>
@@ -115,8 +119,8 @@
                         <th scope="row">Department: </th>
                         <td>{{App\Staff::find(Auth::user()->id)->department}}</td>
                         </tr>
-                        <th scope="row">Committees: </th>
-                        <td>{{App\Staff::find(Auth::user()->id)->committees}}</td>
+                        <th scope="row">Unit: </th>
+                        <td>{{App\Staff::find(Auth::user()->id)->unit}}</td>
                         </tr>
 
                     </tbody>

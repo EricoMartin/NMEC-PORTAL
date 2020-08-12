@@ -24,8 +24,8 @@
     <div id="app"> 
         <nav class="navbar navbar-dark navbar-expand-md navbar-inverse bg-primary shadow-sm">
             <div class="container">
-                <h1><a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'NMEC') }}
+                <h1><a class="navbar-brand" href="{{ url('/') }}" style="padding-top: 0.60rem;padding-bottom: 0;">
+                    <img src="{{asset('/storage/images/output.png')}}" alt="nmec logo" style="width:70px; height:70px; margin-top: 3px;"> {{ config(' app.name', 'NMEC') }}
                 </a></h1>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -47,9 +47,7 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
+                                <li class="nav-item"></li>
                             @endif
                         @else
                             <li class="nav-item dropdown">

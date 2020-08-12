@@ -11,7 +11,7 @@ class Staff extends Model
     protected $fillable = ['username', 'firstname', 'lastname',
     'file_number', 'avatar', 'email', 'dob', 'state', 'gender', 'phone', 
     'designation','grade_level', 'location', 'address',
-     'qualification', 'discipline', 'department', 'committees'];
+     'qualification', 'discipline', 'department', 'unit', 'middlename'];
     //
     public function user()
     {

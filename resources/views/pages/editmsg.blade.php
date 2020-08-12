@@ -13,7 +13,7 @@
     </div>
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('Create Message') }}</div>
+                <div class="card-header">{{ __('Edit Message') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))

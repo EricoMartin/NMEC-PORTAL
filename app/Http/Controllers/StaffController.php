@@ -90,7 +90,8 @@ class StaffController extends Controller
         $staff->qualification = $request->qualification;
         $staff->discipline = $request->discipline;
         $staff->department = $request->department;
-        $staff->committees = $request->committees;
+        $staff->unit = $request->unit;
+        $staff->middlename = $request->middlename;
         $staff->user_id = auth()->user()->id;
         if (Staff::where('id', $staff->user_id)->exists()) {
             return response()->json([
@@ -139,7 +140,8 @@ class StaffController extends Controller
             $staff->qualification = is_null($request->qualification) ? $staff->qualification : $request->qualification;
             $staff->discipline = is_null($request->discipline) ? $staff->discipline : $request->discipline;
             $staff->department = is_null($request->department) ? $staff->department : $request->department;
-            $staff->committees = is_null($request->committees) ? $staff->committees : $request->committees;
+            $staff->unit = is_null($request->unit) ? $staff->unit : $request->unit;
+            $staff->middlename = is_null($request->middlename) ? $staff->middlename : $request->middlename;
             $staff->save();
     
             return response()->json([
