@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Staff;
+use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller

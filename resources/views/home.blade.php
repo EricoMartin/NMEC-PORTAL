@@ -20,7 +20,7 @@
   <div class="card-body">
 
     <!-- Text -->
-    @if(App\Staff::find(Auth::user()->id)->avatar === 'placeholder-person-300x300.png')
+    {{-- @if(App\Staff::find(Auth::user()->id)->avatar === 'placeholder-person-300x300.png') --}}
     <p class="card-text">Maximum Image Size 500kb.</p>
     {{ Form::open(['action' => 'StaffController@uploadAvie', 'method' => 'POST', 'enctype' => 'multipart/form-data'], ['id' => 'display-form']) }}
     <div class="form-group">
@@ -30,7 +30,7 @@
     </div>  
     {{Form::submit('Upload', ['class' => 'btn btn-primary'])}}
     {{ Form::close() }}
-    @endif
+    {{-- @endif --}}
   </div>
 
 </div>
