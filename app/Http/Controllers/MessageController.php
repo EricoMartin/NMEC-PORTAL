@@ -30,11 +30,15 @@ class MessageController extends Controller
     public function getMessages($id){
         $messages = DB::table('messages')->where('staff_id', $id)->get();
         $msg = DB::table('messages')->where('user_id', $id)->get();
-        if(Auth::user()->roles()->pluck('name')->contains(['admin', 'hod', 'unit-head'])){
-            return view('admin.showmsg')->with(['messages' => $messages, 'msg' => $msg]);
-        }
+        
         //dd($messages[0]);
         return view('pages.showmsg')->with(['messages' => $messages, 'msg' => $msg]);
+    }
+
+    public function getSentMessages($id){
+        $msg = DB::table('messages')->where('user_id', $id)->get();
+        //dd($messages[0]);
+        return view('pages.sentmsg')->with('msg', $msg);
     }
 
     public function getAMessage($id){

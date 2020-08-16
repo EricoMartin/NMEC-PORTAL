@@ -44,6 +44,7 @@ Route::post('/staff/avatar', 'StaffController@uploadAvie')->middleware('auth');
 //messages
 Route::get('/inbox', 'MessageController@index')->middleware('auth');
 Route::get('/{id}/inbox', 'MessageController@getMessages')->middleware('auth')->middleware('nocache');
+Route::get('/{id}/sent', 'MessageController@getSentMessages')->middleware('auth')->middleware('nocache');
 Route::get('/{id}/message', 'MessageController@getAmessage')->middleware('auth');
 Route::post('/send', 'MessageController@sendMessage')->middleware('auth');
 Route::post('/send/message', 'MessageController@sendAdminMessage')->middleware('auth');

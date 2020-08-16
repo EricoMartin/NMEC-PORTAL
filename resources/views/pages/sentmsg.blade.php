@@ -29,13 +29,12 @@
                     @endif
 
                 <div class="card-body">
-                    
-                <div class= "row justify-content-between align-items-center"><h3>Messages</h3><small class="badge badge-primary badge-pill">{{count($messages)}}</small></div>
-                @if(count($messages) > 0)
-                <h6><strong>Received Messages</strong></h6>    
+                    @if(count($msg) > 0) 
+                <div class= "row justify-content-between align-items-center"><h3>Sent Messages</h3><small class="badge badge-primary badge-pill">{{count($msg)}}</small></div>
+                 
                 <ul class="list-group">
-                        @foreach($messages as $message)
-                <a class="list-group-item list-group-item-action active" href="/{{$message->id}}/message">{{$message->subject}}<br> <small>{{strip_tags(substr($message->message, 0, 100))}}</small><br><small>{{$message->created_at}}</small></a>
+                        @foreach($msg as $msg1)
+                <a class="list-group-item list-group-item-action active" href="/{{$msg1->id}}/message">{{$msg1->subject}}<br> <small>{{strip_tags(substr($msg1->message, 0, 100))}}</small><br><small>{{$msg1->created_at}}</small></a>
                             
                         <br>
                         @endforeach

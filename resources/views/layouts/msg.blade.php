@@ -44,23 +44,15 @@
                               <a class="nav-link" href="/inbox"><img src="{{asset('/storage/images/folder-9.png')}}" alt="nmec logo" style="width:20px; height:20px; "> Create Message<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                              <a class="nav-link" href="/{{Auth::user()->id}}/inbox"><img src="{{asset('/storage/images/folder-8.png')}}" alt="nmec logo" style="width:20px; height:20px; "> All Messages<span class="sr-only">(current)</span></a>
+                              <a class="nav-link" href="/{{Auth::user()->id}}/inbox"><img src="{{asset('/storage/images/folder-8.png')}}" alt="nmec logo" style="width:20px; height:20px; "> Inbox<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                              <a class="nav-link" href="<?php echo e(url('/staff/'.Auth::user()->id.'/update')); ?>"><img src="{{asset('/storage/images/id-card-5.png')}}" alt="nmec logo" style="width:20px; height:20px; "> Update Data<span class="sr-only">(current)</span></a>
-                            </li>
-                            @if(Auth::user()->roles()->pluck('name')->contains('admin'))
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('admin.staff_list') }}"><img src="{{asset('/storage/images/list-1.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;Staff List<span class="sr-only">(current)</span></a>
-                              </li>
-                              <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('admin.user_list') }}"><img src="{{asset('/storage/images/notepad.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;User List<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="/{{Auth::user()->id}}/sent"><img src="{{asset('/storage/images/folder-8.png')}}" alt="nmec logo" style="width:20px; height:20px; "> Sent<span class="sr-only">(current)</span></a>
                               </li>
                               {{-- <li class="nav-item active">
                                 <a class="nav-link" href="{{ url('/admin') }}">Admin Dashboard<span class="sr-only">(current)</span></a>
                               </li> --}}
                               @endif
-                            @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
