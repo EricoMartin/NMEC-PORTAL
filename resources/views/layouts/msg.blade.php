@@ -37,27 +37,18 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                             @if(Auth::user())
-                            <a class="nav-link" href="/home"><img src="{{asset('/storage/images/house.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;Home<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/home"><img src="{{asset('/storage/images/house.png')}}" alt="nmec logo" style="width:20px; height:20px; "> Home<span class="sr-only">(current)</span></a>
                           </li>
+                          
                             <li class="nav-item active">
-                              <a class="nav-link" href="/{{Auth::user()->id}}/inbox"><img src="{{asset('/storage/images/folder-8.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;Messages<span class="sr-only">(current)</span></a>
+                              <a class="nav-link" href="/inbox"><img src="{{asset('/storage/images/folder-9.png')}}" alt="nmec logo" style="width:20px; height:20px; "> Create Message<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                              <a class="nav-link" href="<?php echo e(url('/staff/'.Auth::user()->id.'/update')); ?>"><img src="{{asset('/storage/images/id-card-5.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;Update Data<span class="sr-only">(current)</span></a>
+                              <a class="nav-link" href="/{{Auth::user()->id}}/inbox"><img src="{{asset('/storage/images/folder-8.png')}}" alt="nmec logo" style="width:20px; height:20px; "> All Messages<span class="sr-only">(current)</span></a>
                             </li>
-                            {{--HOD links  --}}
                             <li class="nav-item active">
-                            @if(Auth::user()->roles()->pluck('name')->contains('hod'))
-                            <a class="nav-link" href="/hod/{{Auth::user()->id}}/staff_list"><img src="{{asset('/storage/images/list-1.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;Dept Staff<span class="sr-only">(current)</span></a>
-                            @endif
+                              <a class="nav-link" href="<?php echo e(url('/staff/'.Auth::user()->id.'/update')); ?>"><img src="{{asset('/storage/images/id-card-5.png')}}" alt="nmec logo" style="width:20px; height:20px; "> Update Data<span class="sr-only">(current)</span></a>
                             </li>
-                            {{--UNIT head links  --}}
-                            <li class="nav-item active">
-                                @if(Auth::user()->roles()->pluck('name')->contains('unithead'))
-                                <a class="nav-link" href="/unithead/{{Auth::user()->id}}/staff_list"><img src="{{asset('/storage/images/list-1.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;Unit Staff<span class="sr-only">(current)</span></a>
-                                @endif
-                            </li>
-                            {{--Admin user links  --}}
                             @if(Auth::user()->roles()->pluck('name')->contains('admin'))
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{ route('admin.staff_list') }}"><img src="{{asset('/storage/images/list-1.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;Staff List<span class="sr-only">(current)</span></a>
@@ -76,35 +67,32 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('login') }}">
-                                    <img src="{{asset('/storage/images/locked-1.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;
-                                    {{ __('Login') }}</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" aria-expanded="false" v-pre>
+                               Welcome {{ Auth::user()->name }} 
+                            </a>
+
                             <li class="nav-item active">
-                                <a class="nav-link" href="#" aria-expanded="false" v-pre>
-                                   Welcome {{ Auth::user()->name }} 
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
-
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                     <img src="{{asset('/storage/images/multiply-1.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;
-                                        {{ __('Logout') }}
-                                    </a>
-                                </li>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
                             </li>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.msg')
 
 @section('content')
 <div class="container">
@@ -17,11 +17,11 @@
                 <div class="card-header">
                     <div class="row">
                     <div class='col'>
-                        <a class="btn btn-primary" href="/reply/{{$messages->id}}/index">Reply Message</a></div>&nbsp;
-                    <div class='col'>
-                        {!!Form::open(['action' => ['MessageController@deleteMessage', $messages->id], 'method' => 'POST', 'class' => 'col'])!!}
+                        <a class="btn btn-primary" href="/reply/{{$messages->id}}/index">Reply</a></div>&nbsp;
+                    <div class='col-7'>
+                        {!!Form::open(['action' => ['MessageController@deleteMessage', $messages->id], 'method' => 'POST'])!!}
                             {!!Form::hidden('_method', 'DELETE')!!}
-                            {!!Form::submit('Delete Message', ['class' => 'btn btn-danger'])!!}
+                            {!!Form::submit('Delete', ['class' => 'btn btn-danger'])!!}
                         {!!Form::close()!!}
             </div>
                 </div>
@@ -37,7 +37,7 @@
                 <small>Message sent on {{$messages->created_at}} by {{App\Staff::find($messages->user_id)->username}}</small>
                 <div>{!!$messages->message!!}</div>
                 @if($messages->filename)
-                <a target="_blank" href="/storage/files/{{$messages->filename}}">Download Attachment</a>
+                <a target="_blank" href="/storage/files/{{$messages->filename}}"><strong style="text-decoration: underline"> Download Attachment</strong></a>
                 @endif
             </div>
             <hr />

@@ -7,6 +7,7 @@ use App\Staff;
 use App\Message;
 use App\User;
 use App\role;
+use Auth;
 use DB;
 
 class MessageController extends Controller
@@ -28,8 +29,12 @@ class MessageController extends Controller
 
     public function getMessages($id){
         $messages = DB::table('messages')->where('staff_id', $id)->get();
+        $msg = DB::table('messages')->where('user_id', $id)->get();
+        if(Auth::user()->roles()->pluck('name')->contains(['admin', 'hod', 'unit-head'])){
+            return view('admin.showmsg')->with(['messages' => $messages, 'msg' => $msg]);
+        }
         //dd($messages[0]);
-        return view('pages.showmsg')->with('messages', $messages);
+        return view('pages.showmsg')->with(['messages' => $messages, 'msg' => $msg]);
     }
 
     public function getAMessage($id){
@@ -87,11 +92,13 @@ class MessageController extends Controller
             'file_number' => 'required',
             'subject' => 'required',
             'message' => 'required',
-            'filename' => 'required|max:1999|mimes:doc,pdf,docx,txt,zip,jpg,png'
+            
         ]);
 
          if($request->hasFile('filename')){
-            
+            $this->validate($request, [
+                'filename' => 'required|max:1999|mimes:doc,pdf,docx,txt,zip,jpg,png'
+            ]);
             //get filename with extension
               $filenamewithextension = $request->file('filename')->getClientOriginalName();
               //get filename without extension
@@ -118,16 +125,25 @@ class MessageController extends Controller
         return redirect('/inbox')->with('success', 'Message sent successfully');
     }
 
-/*     public function sendAdminMessage(Request $request){
+    public function hodIndex($id){
+        $staff_data = Staff::where('id', $id)->get();
+        //dd($user[0]);
+        $staff = $staff_data[0];
+        return view('hod.msg', compact('staff', $staff));
+    }
+
+     public function hodMessage(Request $request){
         $this->validate($request, [
-            'department' => 'required',
+            'file_number' => 'required',
             'subject' => 'required',
             'message' => 'required',
-            'filename' => 'required|max:1999|mimes:doc,pdf,docx,txt,zip,jpg,png'
+            'department'=> 'required'
         ]);
 
          if($request->hasFile('filename')){
-            
+            $this->validate($request, [
+                'filename' => 'required|max:1999|mimes:doc,pdf,docx,txt,zip,jpg,png'
+            ]);
             //get filename with extension
               $filenamewithextension = $request->file('filename')->getClientOriginalName();
               //get filename without extension
@@ -140,9 +156,8 @@ class MessageController extends Controller
         }else{
             $filenametostore = NULL;
         } 
-        $staffid = Staff::where('role_id', 2 )->orderBy('name')->pluck('name', 'role_id');
-        $staff_data = DB::table('staff')->where('department', $request->department)->get();
-        dd($staffid);
+        $staff_data = DB::table('staff')->where('file_number', $request->file_number)->get();
+        
         $staff =$staff_data[0];
         $message = new Message();
         $message->filename = $filenametostore;
@@ -152,8 +167,8 @@ class MessageController extends Controller
         $message->message = $request->message;
         $message->save();
 
-        return redirect('/inbox')->with('success', 'Message sent successfully')->with( 'staff_id', $staffid);
-    } */
+        return redirect('/inbox')->with('success', 'Message sent successfully');
+    } 
 
     public function deleteMessage($id){
         $messages_data = Message::where('id', $id)->get();

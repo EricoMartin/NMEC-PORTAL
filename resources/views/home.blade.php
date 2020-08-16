@@ -137,17 +137,7 @@
     <div class="col-md-3">
         <div class="card" >
                         
-                            <div class="card-header">
-                                <h5>Notice Board</h5>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"></li>
-                                        <li class="list-group-item"> </li>
-                                        <li class="list-group-item"></li>
-                                        <li class="list-group-item"></li>
-                                    </ul>
-                        </div>
-                    </div>
+                            @include('inc.notice')
                 
 </div>
 @endsection

@@ -4,33 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-auto">&nbsp;&nbsp;
-    @foreach($staff as $staff_data)
+    
         
-        @if(App\User::find($staff_data->user_id)->hasRole('admin'))
-            @if( 1 !== Auth::user()->id)
-            <a class="btn btn-primary" href="<?php echo e(url('/admin/'.$staff_data->user_id.'/remove_admin')); ?>" >Remove Admin</a>
-            @endif
-        @else
-        <a class="btn btn-primary" href="<?php echo e(url('/admin/'.$staff_data->user_id.'/admin')); ?>" >Make Admin</a>
-     {{-- <span class="badge badge-primary badge-pill">14</span> --}}
-        @endif 
-        
-        
-            @if(App\User::find($staff_data->user_id)->hasRole('hod'))
-            <a class="btn btn-primary" href="<?php echo e(url('/admin/'.$staff_data->user_id.'/remove_hod')); ?>" >Remove HOD role</a>
-            @else
-            <a class="btn btn-primary" href="<?php echo e(url('/admin/'.$staff_data->user_id.'/hod')); ?>" >Make HOD</a>
-            @endif
-            
-            @if(App\User::find($staff_data->user_id)->hasRole('unithead'))
-            <a class="btn btn-primary" href="<?php echo e(url('/admin/'.$staff_data->user_id.'/remove_unit_head')); ?>" >Remove Unit Head</a>
-            @else
-            <a class="btn btn-primary" href="<?php echo e(url('/admin/'.$staff_data->user_id.'/unithead')); ?>" >Make Unit Head</a>
-            @endif 
-            
+
         </div>
     </div>
 <br>
+@foreach($staff as $staff_data)
     <div class="row justify-content-center">
     <div class="col-md-3">
     
@@ -49,7 +29,7 @@
     </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Admin Dashboard') }}</div>
+                <div class="card-header">{{ __('Staff Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))

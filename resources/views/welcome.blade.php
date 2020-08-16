@@ -80,9 +80,9 @@
 
             <div class="jumbotron">
                 <h1 class="display-4">Welcome To NMEC Staff Portal</h1>
-                <p class="lead">Click on register or login to access the portal.</p>
+                <p class="lead">Click on login to access the portal.</p>
                 <hr class="my-4">
-                <p>Remember to update your data by clicking on update data in your dashboard</p>
+                <p>Kindly ensure you update your data with correct and verifiable details</p>
                 @if (Route::has('login'))
                     @auth
                         <a class="btn btn-primary btn-lg" href="{{ url('/home') }}">Home</a>

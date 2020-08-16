@@ -46,6 +46,8 @@
                         </li>
                         @endforeach
                     </ul>
+                    <br>
+                    {{$users->links()}}
                 </div>
                 </div>
                 

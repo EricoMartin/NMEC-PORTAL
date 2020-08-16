@@ -10,6 +10,7 @@
     <div class="card" style="margin-left: -2rem;">
 
   <!-- Card image -->
+  
   @if(App\Staff::find(Auth::user()->id)->avatar) 
   <img class="card-img-top img-thumbnail" src="/storage/images/{{App\Staff::find(Auth::user()->id)->avatar}}" alt="Card image cap">
   @else
@@ -36,14 +37,15 @@
                         @foreach($staff as $staff_list)
                             
                         
-                        <li class="list-group-item list-group-item-action active d-flex justify-content-between align-items-center">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
                            {{$staff_list->firstname}} {{$staff_list->lastname}}
                            &nbsp;&nbsp;&nbsp;
                            <a class="btn btn-primary" href="<?php echo e(url('/admin/'.$staff_list->user_id.'/staff')); ?>" >view Data</a>
-                        <span class="badge badge-primary badge-pill">14</span>
-                            
+                           
                         </li>
                         @endforeach
+                        <br>
+                        {{$staff->links()}}
                     </ul>
                 </div>
                 </div>

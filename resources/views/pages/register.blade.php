@@ -60,7 +60,7 @@
                 <div class="col">
                     <!-- File Number -->
                     <div class="md-form">
-                        {{Form::number('file_number', '', ['class' => 'form-control'])}}
+                        {{Form::number('file_number', Auth::user()->file_id, ['class' => 'form-control', 'readonly' => 'true'])}}
                         {{Form::label('file_number', 'File Number')}}
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="col">
                     <!-- Gender -->
                     <div class="md-form">
-                        {{Form::select('gender', ['male', 'female'], ['class' => 'form-control md-form' ])}}
+                        {{Form::select('gender', ['male', 'female'], '',['class' => 'form-control' ])}}
                         {{Form::label('gender', 'Gender')}}
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                      <!-- Location -->
                     <div class="md-form">
                         {{Form::text('location', '', ['class' => 'form-control' ])}}
-                        {{Form::label('location', 'Location')}}
+                        {{Form::label('location', 'Office Location')}}
                     </div>
                 </div>
                 <div class="col">

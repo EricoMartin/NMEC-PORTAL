@@ -58,7 +58,6 @@ class StaffController extends Controller
         $this->validate($request, [
             'firstname' => 'required',
             'lastname' => 'required',
-            'file_number' => 'required',
             'email' => 'required', 
             'dob' => 'required', 
             'state' => 'required', 
@@ -74,15 +73,20 @@ class StaffController extends Controller
         ]);
 
         $staff = new Staff;
+        $staff->id = auth()->user()->id;
         $staff->username= auth()->user()->name;
         $staff->firstname = $request->firstname;
         $staff->lastname = $request->lastname;
-        $staff->file_number = $request->file_number;
+        $staff->file_number = auth()->user()->file_id;
         $staff->avatar = 'placeholder-person-300x300.png';
         $staff->email = $request->email;
         $staff->dob = $request->dob;
         $staff->state = $request->state;
-        $staff->gender = $request->gender;
+        if($request->gender == 0){
+          $staff->gender = 'male';
+        }else{
+          $staff->gender = 'female';
+        }
         $staff->phone = $request->phone;
         $staff->designation = $request->designation;
         $staff->grade_level = $request->grade_level;
@@ -112,8 +116,9 @@ class StaffController extends Controller
       public function getStaff($id) {
         // logic to get a staff record goes here
         if (Staff::where('id', $id)->exists()) {
-            $staff = Staff::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($staff, 200);
+            $staff = Staff::where('id', $id)->get();
+           response($staff, 200);
+           return view('staff.staff_data', compact('staff', $staff));
           } else {
             return response()->json([
               "message" => "Staff data not found"

@@ -33,14 +33,14 @@
                     <!-- First name -->
                     <div class="md-form">
                         
-                        {{Form::text('firstname', '', ['class' => 'form-control','placeholder'=>'First Name'])}}
+                        {{Form::text('firstname', App\Staff::find(Auth::user()->id)->firstname, ['class' => 'form-control','placeholder'=>'First Name'])}}
                         {{Form::label('firstname', 'First Name')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- Last name -->
                     <div class="md-form">
-                        {{Form::text('lastname', '', ['class' => 'form-control','placeholder'=>'Last Name'])}}
+                        {{Form::text('lastname', App\Staff::find(Auth::user()->id)->lastname, ['class' => 'form-control','placeholder'=>'Last Name'])}}
                         {{Form::label('lastname', 'Last Name')}}
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="col">
                      <!-- E-mail -->
                     <div class="md-form">
-                        {{Form::text('middlename', '', ['class' => 'form-control','placeholder'=>'Middle Name'])}}
+                        {{Form::text('middlename', App\Staff::find(Auth::user()->id)->middlename, ['class' => 'form-control','placeholder'=>'Middle Name'])}}
                         {{Form::label('middlename', 'Middlename')}}
                     </div>
                 </div>
@@ -60,14 +60,14 @@
                 <div class="col">
                      <!-- E-mail -->
                     <div class="md-form">
-                        {{Form::email('email', '', ['class' => 'form-control','placeholder'=>'example@email.com'])}}
+                        {{Form::email('email', App\Staff::find(Auth::user()->id)->email, ['class' => 'form-control','placeholder'=>'example@email.com'])}}
                         {{Form::label('email', 'E-Mail')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- File Number -->
                     <div class="md-form">
-                        {{Form::number('file_number', '', ['class' => 'form-control','placeholder'=>'0123'])}}
+                        {{Form::number('file_number', App\Staff::find(Auth::user()->id)->file_number, ['class' => 'form-control', 'readonly'=>'true'])}}
                         {{Form::label('file_number', 'File Number')}}
                     </div>
                 </div>
@@ -77,14 +77,14 @@
                 <div class="col">
                      <!-- Phone number -->
                     <div class="md-form">
-                        {{Form::text('phone', '', ['class' => 'form-control','placeholder'=>'080XXXXXXXX'])}}
+                        {{Form::text('phone', App\Staff::find(Auth::user()->id)->phone, ['class' => 'form-control','placeholder'=>'080XXXXXXXX'])}}
                         {{Form::label('phone', 'Phone Number')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- Date of Birth -->
                     <div class="md-form">
-                        {{Form::date('dob', '', ['class' => 'form-control datepicker' ,'placeholder'=>'Selected date'])}}
+                        {{Form::date('dob', App\Staff::find(Auth::user()->id)->dob, ['class' => 'form-control datepicker' , 'readonly'=>'true'])}}
                         {{Form::label('dob', 'Date of Birth')}}
                     <i class="fas fa-calendar input-prefix"></i>
                     </div>
@@ -96,14 +96,14 @@
                 <div class="col">
                      <!-- state -->
                     <div class="md-form">
-                        {{Form::text('state', '', ['class' => 'form-control' ,'placeholder'=>'State of Origin'])}}
+                        {{Form::text('state', App\Staff::find(Auth::user()->id)->state, ['class' => 'form-control' , 'readonly'=>'true'])}}
                         {{Form::label('state', 'State')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- Gender -->
                     <div class="md-form">
-                        {{Form::text('gender', '', ['class' => 'form-control' ,'placeholder'=>'Male/ Female'])}}
+                        {{Form::text('gender', App\Staff::find(Auth::user()->id)->gender, ['class' => 'form-control' , 'readonly'=>'true'])}}
                         {{Form::label('gender', 'Gender')}}
                     </div>
                 </div>
@@ -113,14 +113,14 @@
                 <div class="col">
                      <!-- Designation -->
                     <div class="md-form">
-                        {{Form::text('designation', '', ['class' => 'form-control' ,'placeholder'=>'Designation'])}}
+                        {{Form::text('designation', App\Staff::find(Auth::user()->id)->designation, ['class' => 'form-control' ,'placeholder'=>'Designation'])}}
                         {{Form::label('designation', 'Designation')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- Grade Level -->
                     <div class="md-form">
-                        {{Form::text('grade_level', '', ['class' => 'form-control' ,'placeholder'=>'Conraiss 6 step 7'])}}
+                        {{Form::text('grade_level', App\Staff::find(Auth::user()->id)->grade_level, ['class' => 'form-control' , 'readonly'=>'true'])}}
                         {{Form::label('grade_level', 'Grade Level')}}
                     </div>
                 </div>
@@ -130,15 +130,15 @@
                 <div class="col">
                      <!-- Location -->
                     <div class="md-form">
-                        {{Form::text('location', '', ['class' => 'form-control' ,'placeholder'=>'Location'])}}
-                        {{Form::label('location', 'Location (Zone)')}}
+                        {{Form::text('location', App\Staff::find(Auth::user()->id)->location, ['class' => 'form-control' ,'placeholder'=>'Location'])}}
+                        {{Form::label('location', 'Office Location ')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- Address -->
                     <div class="md-form">
-                        {{Form::text('address', '', ['class' => 'form-control' ,'placeholder'=>'Address'])}}
-                        {{Form::label('address', 'Address')}}
+                        {{Form::text('address', App\Staff::find(Auth::user()->id)->address, ['class' => 'form-control' ,'placeholder'=>'Address'])}}
+                        {{Form::label('address', 'Home Address')}}
                     </div>
                 </div>
             </div>
@@ -147,14 +147,14 @@
                 <div class="col">
                      <!-- Qualification -->
                     <div class="md-form">
-                        {{Form::text('qualification', '', ['class' => 'form-control' ,'placeholder'=>'Qualification'])}}
+                        {{Form::text('qualification', App\Staff::find(Auth::user()->id)->qualification, ['class' => 'form-control' , 'readonly'=>'true'])}}
                         {{Form::label('qualification', 'Qualification')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- Discipline -->
                     <div class="md-form">
-                        {{Form::text('discipline', '', ['class' => 'form-control' ,'placeholder'=>'Discipline'])}}
+                        {{Form::text('discipline', App\Staff::find(Auth::user()->id)->discipline, ['class' => 'form-control' ,'placeholder'=>'Discipline'])}}
                         {{Form::label('discipline', 'Discipline')}}
                     </div>
                 </div>
@@ -164,14 +164,14 @@
                 <div class="col">
                      <!-- Department -->
                     <div class="md-form">
-                        {{Form::text('department', '', ['class' => 'form-control' ,'placeholder'=>'Department'])}}
+                        {{Form::text('department', App\Staff::find(Auth::user()->id)->department, ['class' => 'form-control' ,'placeholder'=>'Department'])}}
                         {{Form::label('department', 'Department')}}
                     </div>
                 </div>
                 <div class="col">
                     <!-- Committees -->
                     <div class="md-form">
-                        {{Form::text('unit', '', ['class' => 'form-control' ,'placeholder'=>'Unit'])}}
+                        {{Form::text('unit', App\Staff::find(Auth::user()->id)->unit, ['class' => 'form-control' ,'placeholder'=>'Unit'])}}
                         {{Form::label('unit', 'Unit')}}
                     </div>
                 </div>
