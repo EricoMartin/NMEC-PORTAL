@@ -13,7 +13,7 @@
     </div>
         <div class="col-md-10">
             <div class="card ">
-                <div class="card-header">{{ __('Create Message') }}</div>
+                <div class="card-header">{{ __('Reply Message') }}</div>
                 <div class="card-header">
                     <div class="row">
                     <div class='col'>
@@ -52,10 +52,14 @@
                             <br>
                             <small>{{$reply->created_at}}</small>
                             <p>{!!$reply->message!!}</p>
+                            @if($reply->filename)
+                            <a target="_blank" href="/storage/files/{{$reply->filename}}"><strong style="text-decoration: underline"> Download File Attachment</strong></a>
+                            @endif
                             </li>
                         </div>
                     @endforeach
                 </ul>
+                {{$messages->replies->links()}}
                 @endif
         </div>
         

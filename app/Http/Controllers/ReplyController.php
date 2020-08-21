@@ -25,12 +25,36 @@ class ReplyController extends Controller
     }
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'staff_id' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+        // dd($request);
+        if($request->hasFile('filename')){
+            $this->validate($request, [
+                'filename' => 'required|max:1999|mimes:doc,pdf,docx,txt,zip,jpg,png'
+            ]);
+            //get filename with extension
+              $filenamewithextension = $request->file('filename')->getClientOriginalName();
+              //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            //get file extension
+            $extension = $request->file('filename')->getClientOriginalExtension();
+            //filename to store
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('filename')->storeAs('public/files', $filenametostore);
+        }else{
+            $filenametostore = NULL;
+        } 
         $reply = new Reply;
         $reply->message = $request->message;
         $reply->subject = $request->subject;
         $reply->staff_id = $request->staff_id;
         $reply->user_id = $request->user()->id;
         $reply->msg_id = $request->msg_id;
+        $reply->filename = $filenametostore;
         $message = Message::find($request->msg_id);
         $reply->save();
         $message->replies()->save($reply);

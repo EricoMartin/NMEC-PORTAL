@@ -27,16 +27,29 @@ class MessageController extends Controller
         return view('pages.message');
     }
 
+    public function search(Request $request){
+        $search = $request->get('search');
+        $staff = DB::table('staff')->where('file_number', 'like', '%'.$search.'%')->paginate(5);
+        $stafffirstname = DB::table('staff')->where('firstname', 'like', '%'.$search.'%')->paginate(5);
+        $stafflastname = DB::table('staff')->where('lastname', 'like', '%'.$search.'%')->paginate(5);
+        return view('pages.stafflist')->with(['staff'=> $staff, 'stafffirstname' => $stafffirstname, 'stafflastname' => $stafflastname]);
+    }
+    public function staffMessage($id){
+        $staff = Staff::find($id);
+        return view('pages.msg', compact('staff', $staff));
+    }
+
     public function getMessages($id){
-        $messages = DB::table('messages')->where('staff_id', $id)->get();
-        $msg = DB::table('messages')->where('user_id', $id)->get();
+        $messages = DB::table('messages')->where('staff_id', $id)->paginate(5);
+        $msg = DB::table('messages')->where('user_id', $id)->paginate(5);
+        
         
         //dd($messages[0]);
         return view('pages.showmsg')->with(['messages' => $messages, 'msg' => $msg]);
     }
 
     public function getSentMessages($id){
-        $msg = DB::table('messages')->where('user_id', $id)->get();
+        $msg = DB::table('messages')->where('user_id', $id)->paginate(5);
         //dd($messages[0]);
         return view('pages.sentmsg')->with('msg', $msg);
     }

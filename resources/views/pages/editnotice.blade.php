@@ -13,7 +13,7 @@
     </div>
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('Create Message') }}</div>
+                <div class="card-header">{{ __('Edit notice') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -23,18 +23,17 @@
                     @endif
 
                 <div class="card-body">
-                <div><h3>Create Notice Board Message</h3></div>
-                
-                    {{ Form::open(['action' => 'NoticeController@store',  'method' => 'POST', 'enctype' => 'multipart/form-data']) }}
-                    
+                <div><h3>Edit Notice</h3></div>
+                    {{ Form::open(['action' => ['NoticeController@update', $notice->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) }}
+                    <div class="form-group">
+                        
+                        {{Form::hidden('link', '#', ['class' => 'form-control', 'placeholder' => 'Title'])}}
+                    </div>
                     <div class="form-group">
                         {{Form::label('body', 'Notice')}}
-                        {{Form::textArea('body', '', ['id' => 'summary-ckeditor', 'name' => 'body', 'class' => 'form-control', 'placeholder' => 'Notice Message'])}}
+                        {{Form::textArea('body', $notice->body, ['id' => 'summary-ckeditor', 'name' => 'body', 'class' => 'form-control'])}}
                     </div>
-                    <div class="form-group">
-                       
-                        {{Form::hidden('link', '#', [ 'class' => 'form-control', 'name' => 'link', 'placeholder' => 'Type web link here'])}}
-                    </div>
+                        {{Form::hidden('_method', 'PUT')}}
                         {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
                     {{ Form::close() }}
                 </div>

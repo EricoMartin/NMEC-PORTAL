@@ -43,6 +43,8 @@ Route::post('/staff/avatar', 'StaffController@uploadAvie')->middleware('auth');
 
 //messages
 Route::get('/inbox', 'MessageController@index')->middleware('auth');
+Route::get('/search', 'MessageController@search')->middleware('auth');
+Route::get('/inbox/{id}', 'MessageController@staffMessage')->middleware('auth');
 Route::get('/{id}/inbox', 'MessageController@getMessages')->middleware('auth')->middleware('nocache');
 Route::get('/{id}/sent', 'MessageController@getSentMessages')->middleware('auth')->middleware('nocache');
 Route::get('/{id}/message', 'MessageController@getAmessage')->middleware('auth');
@@ -82,7 +84,7 @@ Route::get('/admin/{id}/staff', 'AdminController@getAStaff')->name('admin.staff_
 
 //notice board
 Route::resource('notice', 'NoticeController');
-
+Route::get('/{id}/notices', 'NoticeController@showNotice');
 //reset password
 Route::get('/password/reset','Auth\ResetPasswordController@create');
 Route::post('/password/reset','Auth\ResetPasswordController@store')->name('reset.password.store');

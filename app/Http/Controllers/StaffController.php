@@ -46,15 +46,18 @@ class StaffController extends Controller
               $path = $request->file('avatar')->storeAs('public/images', $filenametostore);
               Staff::find(auth()->user()->id)->update(['avatar' => $filenametostore]);
               $msg = 'Avatar uploaded successfully';
+              return redirect()->back()->with('success', $msg);
           }else{
             $msg = 'Upload not successful';
+            return redirect()->back()->with('error', $msg);
           }
-        
-        return redirect()->back()->with('success', $msg);
       }
   
       public function createStaff(Request $request) {
         // logic to create a staff record goes here
+        $request->grade_level += 1;
+        $request->step +=1;
+        $request->grade_level = 'Conraiss '.$request->grade_level.' Step '.$request->step;
         $this->validate($request, [
             'firstname' => 'required',
             'lastname' => 'required',
@@ -150,14 +153,16 @@ class StaffController extends Controller
             $staff->middlename = is_null($request->middlename) ? $staff->middlename : $request->middlename;
             $staff->save();
     
-            return response()->json([
+            response()->json([
                 "data" => $staff,
                 "message" => "Records updated successfully"
             ], 200);
+            return view('home')->with(['staff' => $staff, 'success' => 'Records updated successfully']);
             } else {
-            return response()->json([
+             response()->json([
                 "message" => "Staff data not found"
             ], 404);
+            return view('home')->with([ 'error' => 'Staff data not found']);
             
         }
       }

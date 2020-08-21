@@ -32,7 +32,7 @@
                     @endif
                     
                 <div class="card-body">
-                <div><h3>List of {{$staff[Auth::user()->id]->department}} Staff</h3></div>
+                <div><h3>List of {{App\staff::find(Auth::user()->id)->department}} Staff</h3></div>
                     <ul class="list-group">
                         
                         @foreach($staff as $staff_list)

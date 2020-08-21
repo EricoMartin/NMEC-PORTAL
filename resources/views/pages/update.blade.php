@@ -130,7 +130,7 @@
                 <div class="col">
                      <!-- Location -->
                     <div class="md-form">
-                        {{Form::text('location', App\Staff::find(Auth::user()->id)->location, ['class' => 'form-control' ,'placeholder'=>'Location'])}}
+                        {{Form::text('location', App\Staff::find(Auth::user()->id)->location, ['class' => 'form-control' , 'readonly'=>'true'])}}
                         {{Form::label('location', 'Office Location ')}}
                     </div>
                 </div>

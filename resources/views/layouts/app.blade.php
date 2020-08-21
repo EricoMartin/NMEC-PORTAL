@@ -65,11 +65,12 @@
                               <li class="nav-item active">
                                 <a class="nav-link" href="{{ route('admin.user_list') }}"><img src="{{asset('/storage/images/notepad.png')}}" alt="nmec logo" style="width:20px; height:20px; ">&nbsp;User List<span class="sr-only">(current)</span></a>
                               </li>
-                              {{-- <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('/admin') }}">Admin Dashboard<span class="sr-only">(current)</span></a>
-                              </li> --}}
+                              
                               @endif
                             @endif
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('/notice') }}">Notice Messages<span class="sr-only">(current)</span></a>
+                              </li> 
                     </ul>
 
                     <!-- Right Side Of Navbar -->

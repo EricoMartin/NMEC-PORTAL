@@ -17,9 +17,27 @@
 </div>
     
     </div>
-        <div class="col-md-8">
+            <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    {!! Form::open(['action' => 'MessageController@search', 'method' => 'GET']) !!}
+                    <div class="form-row input-group">
+                    
+                    <div class="col" style="color: #757575;" >
+
+                        <div class="md-form">
+                                    
+                                    {{Form::search('search', '', ['class' => 'form-control', 'name' => 'search'])}}
+                                </div>
+                            </div>
+                                    <div class=" col">
+                                        <span class="md-form input-group-prepend">
+                                        {{Form::submit('Search', ['class' => 'btn btn-primary form-group-btn'])}}
+                                        </span>
+                                    </div>      
+                    </div>
+                    {!! Form::close() !!}
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -27,9 +45,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                <div class="card-body">
-                    
                 <div class= "row justify-content-between align-items-center"><h3>Messages</h3><small class="badge badge-primary badge-pill">{{count($messages)}}</small></div>
                 @if(count($messages) > 0)
                 <h6><strong>Received Messages</strong></h6>    
@@ -47,7 +62,7 @@
                     
                 </div>
                 </div>
-                
+                {{$messages->links()}}
                 
             </div>
             

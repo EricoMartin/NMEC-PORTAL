@@ -14,14 +14,16 @@
                     </p>
                     <hr />
                     <h4>Add Reply</h4>
-                    <form method="post" action="{{ route('reply.add', $messages->id) }}">
+                    <form method="post" action="{{ route('reply.add', $messages->id) }}"  enctype= "multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Message</label>
                             <textarea  name="message" id="summary-ckeditor" class="form-control" placeholder="Type your reply here"></textarea>
+                            <input type="file" name="filename" id="filename" />
                             <input type="hidden" name="msg_id" value="{{ $messages->id }}" />
                             <input type="hidden" name="staff_id" value="{{ $messages->staff_id }}" />
                             <input type="hidden" name="subject" value="{{ $messages->subject }}" />
+                            
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Add Reply" />

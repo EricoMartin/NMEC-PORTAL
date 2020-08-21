@@ -118,6 +118,13 @@ abbr[data-original-title] {
   border-top: 1px solid #dee2e6;
   }
 }
+
+@media (max-width: 768px){
+  #delbutton{
+    margin-inline-end: 40px;
+  }
+}
+
 @media (max-width: 370px) {
    td {
     padding: 0rem !important;

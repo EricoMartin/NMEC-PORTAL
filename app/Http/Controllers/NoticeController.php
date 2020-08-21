@@ -14,9 +14,9 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        $notices = Notice::all();
+        $notices = Notice::where('link', '#')->paginate(5);
         view('inc.notice', compact('notices', $notices));
-        return view('notice.index');
+        return view('pages.shownotice', compact('notices', $notices));
     }
 
     /**
@@ -27,6 +27,12 @@ class NoticeController extends Controller
     public function create()
     {
         //
+        return view('notice.index');
+    }
+
+    public function showNotice($id){
+        $notices = Notice::find($id);
+        return view('pages.viewnotice', compact('notices', $notices));
     }
 
     /**
@@ -57,7 +63,8 @@ class NoticeController extends Controller
      */
     public function show($id)
     {
-        //
+        $notices = Notice::all();
+        return view('pages.shownotice', compact('notices', $notices));
     }
 
     /**
@@ -68,7 +75,9 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $notice = Notice::find($id);
+        //dd($notice);
+        return view('pages.editnotice', compact('notice', $notice));
     }
 
     /**
@@ -80,7 +89,14 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'body'=> 'required'
+        ]);
+        $notice = Notice::find($id);
+        $notice->body = $request->body;
+        $notice->link = $request->link;
+        $notice->save();
+        return redirect('/notice/'.$notice->id)->with('success', 'Notice updated successfully');
     }
 
     /**
@@ -91,6 +107,9 @@ class NoticeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $notice = Notice::find($id);
+        $notice->delete();
+        $notices = Notice::all();
+        return view('pages.shownotice')->with(['success' => 'Notice Deleted!', 'notices' => $notices]);
     }
 }

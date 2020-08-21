@@ -1,4 +1,4 @@
-@extends('layouts.msg')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -19,7 +19,14 @@
     </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    <div class='row'>
+                    <div class='col-8'>
+                        @if(Auth::user()->roles()->pluck('name')->contains('admin'))
+                        <a class="btn btn-primary" href="/notice/create">New Notice</a></div>&nbsp;
+                        @endif
+                    </div>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -29,12 +36,13 @@
                     @endif
 
                 <div class="card-body">
-                    @if(count($msg) > 0) 
-                <div class= "row justify-content-between align-items-center"><h3>Sent Messages</h3><small class="badge badge-primary badge-pill">{{count($msg)}}</small></div>
-                 
+                    
+                <div class= "row justify-content-between align-items-center"><h3>Notice Board Messages</h3><small class="badge badge-primary badge-pill">{{count($notices)}}</small></div>
+                @if(count($notices) > 0)
+                <h6><strong>Notices</strong></h6>    
                 <ul class="list-group">
-                        @foreach($msg as $msg1)
-                <a class="list-group-item list-group-item-action active" href="/{{$msg1->id}}/message">{{$msg1->subject}}<br> <small>{{strip_tags(substr($msg1->message, 0, 100))}}</small><br><small>{{$msg1->created_at}}</small></a>
+                        @foreach($notices as $notice)
+                <a class="list-group-item list-group-item-action active" href="/{{$notice->id}}/notices">{!! strip_tags(substr($notice->body, 0, 100)) !!} ...<br><small>{{$notice->created_at}}</small></a>
                             
                         <br>
                         @endforeach
@@ -46,8 +54,7 @@
                     
                 </div>
                 </div>
-                {{$msg->links()}}
-                
+                {{$notices->links()}}
                 
             </div>
             

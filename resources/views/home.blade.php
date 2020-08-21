@@ -98,6 +98,9 @@
                         <th scope="row">Gender: </th>
                         <td>{{App\Staff::find(Auth::user()->id)->gender}}</td>
                         </tr>
+                        <th scope="row">Office Location: </th>
+                        <td>{{App\Staff::find(Auth::user()->id)->location}}</td>
+                        </tr>
                         <th scope="row">Designation: </th>
                         <td>{{App\Staff::find(Auth::user()->id)->designation}}</td>
                         </tr>
